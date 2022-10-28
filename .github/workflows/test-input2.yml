@@ -1,0 +1,28 @@
+name: Test run input in Github Actions2
+run-name: ${{ github.actor }} is testing input in Github Actions2
+on: 
+  workflow_dispatch:
+    inputs:
+      person:
+        description: 'The person who run this workflow2'
+        required: true
+        type: choice
+        options:
+          - thai2
+          - guest2
+jobs:
+  test-input:
+    name: Test input
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Input value is ${{ github.event.inputs.person }} 2"
+
+      - if: ${{ github.event.inputs.person == 'thai2' }}
+        name: Check person is thai2
+        run: echo "thai2 have been inputed"
+
+      - if: ${{ github.event.inputs.person == 'guest2' }}
+        name: Check guest2
+        run: echo "guest2 have been inputed"
+
+      - run: echo "Done"
