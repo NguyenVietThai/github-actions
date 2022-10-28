@@ -6,6 +6,10 @@ on:
       person:
         description: 'The person who run this workflow'
         required: true
+        type: choice
+        options:
+          - thai
+          - guest
 jobs:
   test-input:
     name: Test input
@@ -15,6 +19,10 @@ jobs:
 
       - if: ${{ github.event.inputs.person == 'thai' }}
         name: Check person is thai
+        run: echo "thai have been inputed"
+
+      - if: ${{ github.event.inputs.person == 'guest' }}
+        name: Check guest
         run: echo "thai have been inputed"
 
       - run: echo "Done"
